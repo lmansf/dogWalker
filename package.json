@@ -1,0 +1,11 @@
+{
+  "name": "dogwalker-site",
+  "version": "1.0.0",
+  "description": "Amanda's Pet Sitting & Dog Walking Services",
+  "scripts": {
+    "build": "echo 'No build process needed for static site'"
+  },
+  "dependencies": {
+    "firebase": "^11.0.1"
+  }
+}

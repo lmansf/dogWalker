@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Marquee Examples</title>
+<link rel="stylesheet" href="styles.css">
+<script src="marq.js" defer></script>
+</head>
+<body>
+<h1>CSS Marquee Examples</h1>
+<p>An exploration of responsive marquee-style animations with HTML and CSS for the article <a href="https://ryanmulligan.dev/blog/css-marquee/" target="_blank">The Infinite Marquee</a>.
+
+
+<section>
+  <h2>Fit content</h2>
+  <input id="enable-animation-4" type="checkbox" />
+  <label for="enable-animation-4">Enable animation</label>
+
+  <div class="marquee marquee--fit-content">
+    <ul class="marquee__content">
+      <li>"My dog absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby peejay is in safe hands with a professional."</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+
+    <ul aria-hidden="true" class="marquee__content">
+      <li>"My dog absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby peejay is in safe hands with a professional."</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Fit content + position absolute :last-child</h2>
+  <input id="enable-animation-5" type="checkbox" />
+  <label for="enable-animation-5">Enable animation</label>
+
+  <div class="marquee marquee--fit-content marquee--pos-absolute">
+    <ul class="marquee__content">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+
+    <ul aria-hidden="true" class="marquee__content">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+</section>
+</body>
+</html>
