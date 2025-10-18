@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 340px 160px 0; /* Right padding for callout, bottom padding for callout */
   position: relative;
   min-height: 100vh;
 }
@@ -288,10 +288,18 @@ ul.topnav li a:hover {
   font-size: 0.9rem;
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Main content */
 @media (max-width: 768px) {
+  body {
+    padding: 0 10px 20px 10px; /* Override desktop padding for mobile */
+  }
+  
+  main, footer {
+    margin-right: 0; /* Remove desktop margin on mobile */
+  }
+  
   .calendly-container {
-    margin: 10px;
+    margin: 10px 0;
     padding: 10px;
   }
   
@@ -519,4 +527,84 @@ section > * + * {
     font-size: 1.1rem;
   }
 }
+body {font-family: Arial, Helvetica, sans-serif;}
 
+.callout {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 300px;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.callout-header {
+  padding: 25px 15px;
+  background: #555;
+  font-size: 30px;
+  color: white;
+}
+
+.callout-container {
+  padding: 15px;
+  background-color: #ccc;
+  color: black
+}
+
+.closebtn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: lightgrey;
+}
+
+/* Responsive callout positioning */
+@media (max-width: 1024px) {
+  body {
+    padding-right: 20px; /* Remove right padding on smaller screens */
+  }
+  
+  .callout {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    max-width: 100%;
+    margin: 20px;
+    order: 1; /* Move to top on mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 20px; /* Reduce bottom padding on mobile */
+  }
+  
+  .callout {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+  
+  .callout-header {
+    padding: 15px 10px;
+    font-size: 20px;
+  }
+  
+  .callout-container {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Ensure main content has proper margin on desktop to avoid callout overlap */
+  main, footer {
+    margin-right: 340px;
+  }
+}
