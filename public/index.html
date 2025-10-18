@@ -27,67 +27,53 @@
       document.addEventListener('DOMContentLoaded', initializePage) : 
       initializePage();
 
-    // Dynamic callout positioning and sizing
+    // Accordion callout positioning - top anchored to calendar, bottom to screen
     const setupCallout = () => {
       const callout = document.querySelector('.callout');
       const calendlyContainer = document.querySelector('.calendly-container');
       
       if (!callout || !calendlyContainer) return;
       
-      let isSticky = false;
-      let originalTop = 0;
-      
       const updateCallout = () => {
-        // Get calendar position
+        // Get calendar and window dimensions
         const calendlyRect = calendlyContainer.getBoundingClientRect();
         const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
         
-        // Calculate initial position (same height as calendar)
-        if (originalTop === 0) {
-          originalTop = calendlyRect.top + scrollY;
-        }
+        // Calculate calendar top position relative to page
+        const calendarTop = calendlyRect.top + scrollY;
         
-        // Determine if callout should stick to bottom
-        const shouldStick = scrollY > originalTop - window.innerHeight + 200;
+        // Always use fixed positioning for accordion effect
+        callout.style.position = 'fixed';
+        callout.style.right = '20px';
+        callout.style.width = '300px';
         
-        if (shouldStick && !isSticky) {
-          // Switch to sticky mode
-          callout.style.position = 'fixed';
-          callout.style.bottom = '20px';
-          callout.style.right = '20px';
+        // Top anchor: align with calendar top (but keep in viewport)
+        const topPosition = Math.max(calendlyRect.top, 20); // Don't go above viewport
+        callout.style.top = topPosition + 'px';
+        
+        // Bottom anchor: align with bottom of screen
+        const bottomPosition = 20; // 20px from bottom
+        const availableHeight = windowHeight - topPosition - bottomPosition;
+        
+        // Set height to fill from calendar top to screen bottom
+        if (availableHeight > 100) { // Minimum height check
+          callout.style.height = availableHeight + 'px';
+          callout.style.bottom = 'auto';
+        } else {
+          // If too small, just position normally at bottom
+          callout.style.height = 'auto';
+          callout.style.bottom = bottomPosition + 'px';
           callout.style.top = 'auto';
-          callout.style.maxWidth = '280px';
-          callout.style.transform = 'scale(0.9)';
-          isSticky = true;
-        } else if (!shouldStick && isSticky) {
-          // Switch back to absolute positioning
-          callout.style.position = 'absolute';
-          callout.style.top = originalTop + 'px';
-          callout.style.bottom = 'auto';
-          callout.style.right = '20px';
-          callout.style.maxWidth = '300px';
-          callout.style.transform = 'scale(1)';
-          isSticky = false;
-        } else if (!shouldStick) {
-          // Initial positioning at calendar height
-          callout.style.position = 'absolute';
-          callout.style.top = originalTop + 'px';
-          callout.style.right = '20px';
-          callout.style.bottom = 'auto';
-          callout.style.maxWidth = '300px';
-          callout.style.transform = 'scale(1)';
         }
       };
       
-      // Initial setup
+      // Initial setup with delay to ensure calendar is loaded
       setTimeout(updateCallout, 100);
       
-      // Update on scroll and resize
+      // Update on scroll and resize for accordion effect
       window.addEventListener('scroll', updateCallout);
-      window.addEventListener('resize', () => {
-        originalTop = 0; // Recalculate on resize
-        updateCallout();
-      });
+      window.addEventListener('resize', updateCallout);
     };
     
     // Initialize callout after DOM is ready
