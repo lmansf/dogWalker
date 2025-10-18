@@ -4,15 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Amanda's Pet Services</title>
+    <link rel="preload" href="img.jpg" as="image">
     <link rel="stylesheet" href="styles.css">
     <script src="marq.js" defer></script>
-    <style>
-      body{
-        background-image: url(img.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
-    </style>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <script defer> 
+    // Simplified functionality for Calendly integration
+    const initializePage = () => {
+      // Calendly handles scheduling, no custom calendar logic needed
+      console.log('Calendly integration loaded');
+      
+      // Optional: Add any custom tracking or analytics here
+      window.addEventListener('message', function(e) {
+        if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+          console.log('Calendly event:', e.data.event);
+        }
+      });
+    };
+    
+    // Initialize when DOM is ready
+    document.readyState === 'loading' ? 
+      document.addEventListener('DOMContentLoaded', initializePage) : 
+      initializePage();
+</script>
+
 </head>
 
 <body>
@@ -29,42 +44,69 @@
         <h1>Schedule a free pet meet to see if Amanda's services are a good fit for you and your furry friend!</h1>
       </div>
         
-        <!-- Calendar going here -->
-
-  <div class="calendar-container">
-    <div class="calendar-header">
-      <button id="prevMonth">❮</button>
-      <h2 id="monthYear"></h2>
-      <button id="nextMonth">❯</button>
+        <!-- Three Card Layout -->
+<div class="cards-container">
+  <!-- Calendly Calendar Card -->
+  <div class="card calendar-card">
+    <div class="calendly-inline-widget" 
+         data-url="https://calendly.com/lmansf96/30min?primary_color=63dd61" 
+         style="min-width:100%;height:380px;border-radius:10px;overflow:hidden;">
     </div>
-    <div class="calendar-days">
-      <div class="day-name">Sun</div>
-      <div class="day-name">Mon</div>
-      <div class="day-name">Tue</div>
-      <div class="day-name">Wed</div>
-      <div class="day-name">Thu</div>
-      <div class="day-name">Fri</div>
-      <div class="day-name">Sat</div>
-    </div>
-    <div id="calendarDates" class="calendar-dates"></div>
   </div>
+
+  <!-- Availability Card -->
+  <div class="card availability-card">
+    <h3>🗓️ Saturday Availability</h3>
+    <p>Available time slots for today:</p>
+    <div class="time-slots">
+      <div class="time-slot available">9:00 AM</div>
+      <div class="time-slot unavailable">11:00 AM</div>
+      <div class="time-slot available">1:00 PM</div>
+      <div class="time-slot available">3:00 PM</div>
+      <div class="time-slot unavailable">5:00 PM</div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="dot available"></span>Available</span>
+      <span class="legend-item"><span class="dot unavailable"></span>Booked</span>
+    </div>
+  </div>
+
+  <!-- Service Card -->
+  <div class="card service-card">
+    <h3>📋 Our Services</h3>
+    <p>Schedule your appointment using the calendar, or contact us directly:</p>
+    <div class="service-buttons">
+      <button class="service-btn" onclick="window.open('https://calendly.com/lmansf96/30min?primary_color=63dd61', '_blank')">
+        🐕 Dog Walking
+      </button>
+      <button class="service-btn" onclick="window.open('https://calendly.com/lmansf96/30min?primary_color=63dd61', '_blank')">
+        🏠 Pet Sitting
+      </button>
+      <button class="service-btn" onclick="window.open('https://calendly.com/lmansf96/30min?primary_color=63dd61', '_blank')">
+        ✅ Pet Check-in
+      </button>
+    </div>
+    <div class="contact-info">
+      <p><strong>📞 Contact Amanda:</strong> 443-857-7281</p>
+      <p>Text for immediate assistance!</p>
+    </div>
+  </div>
+</div>
     </main>
-    <script src="scriptCalendar.js"></script>
   </body>
 <footer>
  <section class="enable-animation">
 
   <div class="marquee marquee--fit-content">
     <ul class="marquee__content">
-      <li><a style="color: yellow">Gina says:</a>  "My <a style="color: purple"><strong>dog</strong></a>  absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <a style="color: purple"><strong>peejay</strong></a> is in safe hands with a professional."</li>
-      <li><a style="color: yellow">Jessica says:</a> "I won't leave my babies with anyone else! My little <a style="color: purple"><strong>cats</strong></a> need the attention of a pro."</li>
-      <li><a style="color: yellow"><strong>Logan</strong> says:</a> "<a style="color: purple"><strong>Toffee</strong></a> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
+      <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
+      <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
+      <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
     </ul>
-
     <ul aria-hidden="true" class="marquee__content">
-      <li><a style="color: yellow">Gina says:</a>  "My <a style="color: purple"><strong>dog</strong></a>  absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <a style="color: purple"><strong>peejay</strong></a> is in safe hands with a professional."</li>
-      <li><a style="color: yellow">Jessica says:</a> "I won't leave my babies with anyone else! My little <a style="color: purple"><strong>cats</strong></a> need the attention of a pro."</li>
-      <li><a style="color: yellow"><strong>Logan</strong> says:</a> "<a style="color: purple"><strong>Toffee</strong></a> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
+      <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
+      <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
+      <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
     </ul>
   </div>
 </section> 

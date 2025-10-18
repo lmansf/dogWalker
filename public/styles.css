@@ -244,10 +244,17 @@ ul.topnav li a:hover {
 }
 
 /* Service Buttons */
+.service-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
 .service-btn {
   display: block;
   width: 100%;
-  margin: 8px 0;
+  margin: 0;
   padding: 12px;
   background: #5cb85c;
   color: white;
