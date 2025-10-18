@@ -533,7 +533,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   border-radius: 8px;
   overflow: hidden;
-  transition: all 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
 }

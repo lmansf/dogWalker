@@ -35,45 +35,44 @@
       if (!callout || !calendlyContainer) return;
       
       const updateCallout = () => {
-        // Get calendar and window dimensions
-        const calendlyRect = calendlyContainer.getBoundingClientRect();
-        const scrollY = window.scrollY;
-        const windowHeight = window.innerHeight;
-        
-        // Calculate calendar top position relative to page
-        const calendarTop = calendlyRect.top + scrollY;
-        
-        // Always use fixed positioning for accordion effect
-        callout.style.position = 'fixed';
-        callout.style.right = '20px';
-        callout.style.width = '300px';
-        
-        // Top anchor: align with calendar top (but keep in viewport)
-        const topPosition = Math.max(calendlyRect.top, 20); // Don't go above viewport
-        callout.style.top = topPosition + 'px';
-        
-        // Bottom anchor: align with bottom of screen
-        const bottomPosition = 20; // 20px from bottom
-        const availableHeight = windowHeight - topPosition - bottomPosition;
-        
-        // Set height to fill from calendar top to screen bottom
-        if (availableHeight > 100) { // Minimum height check
-          callout.style.height = availableHeight + 'px';
-          callout.style.bottom = 'auto';
-        } else {
-          // If too small, just position normally at bottom
-          callout.style.height = 'auto';
-          callout.style.bottom = bottomPosition + 'px';
-          callout.style.top = 'auto';
-        }
+        // Use requestAnimationFrame for smooth, immediate updates
+        requestAnimationFrame(() => {
+          // Get calendar and window dimensions
+          const calendlyRect = calendlyContainer.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Always use fixed positioning for accordion effect
+          callout.style.position = 'fixed';
+          callout.style.right = '20px';
+          callout.style.width = '300px';
+          
+          // Top anchor: align with calendar top (but keep in viewport)
+          const topPosition = Math.max(calendlyRect.top, 20);
+          callout.style.top = topPosition + 'px';
+          
+          // Bottom anchor: align with bottom of screen
+          const bottomMargin = 20;
+          const availableHeight = windowHeight - topPosition - bottomMargin;
+          
+          // Set height to fill from calendar top to screen bottom
+          if (availableHeight > 100) { // Minimum height check
+            callout.style.height = availableHeight + 'px';
+            callout.style.bottom = 'auto';
+          } else {
+            // If too small, position at bottom with auto height
+            callout.style.height = 'auto';
+            callout.style.bottom = bottomMargin + 'px';
+            callout.style.top = 'auto';
+          }
+        });
       };
       
-      // Initial setup with delay to ensure calendar is loaded
-      setTimeout(updateCallout, 100);
+      // Initial setup - no delay for immediate response
+      updateCallout();
       
-      // Update on scroll and resize for accordion effect
-      window.addEventListener('scroll', updateCallout);
-      window.addEventListener('resize', updateCallout);
+      // Update on scroll and resize for real-time accordion effect
+      window.addEventListener('scroll', updateCallout, { passive: true });
+      window.addEventListener('resize', updateCallout, { passive: true });
     };
     
     // Initialize callout after DOM is ready
@@ -104,7 +103,7 @@
 </ul>
     <main>
       <div>
-        <h1>Schedule a free pet meet to see if Amanda's services are a good fit for you and your furry friend!</h1>
+        <h1>Bookings are Available!</h1>
       </div>
         
         <!-- Calendly Booking Widget -->
