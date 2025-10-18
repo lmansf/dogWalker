@@ -6,6 +6,37 @@
     <title>Amanda's Pet Services</title>
     <link rel="stylesheet" href="styles.css">
     <script src="marq.js" defer></script>
+    <script> 
+    // Service card functionality
+    function setupServiceCard() {
+      const serviceContent = document.getElementById('serviceContent');
+      const selectedDate = document.getElementById('selectedDate');
+      
+      // Listen for calendar date clicks
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('date') && !e.target.classList.contains('inactive')) {
+          const day = e.target.textContent;
+          const monthYear = document.getElementById('monthYear').textContent;
+          const dateText = `${monthYear} ${day}`;
+          
+          selectedDate.textContent = `Selected: ${dateText}`;
+          serviceContent.style.display = 'block';
+        }
+      });
+      
+      // Handle service button clicks
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('service-btn')) {
+          const service = e.target.dataset.service;
+          const date = selectedDate.textContent.replace('Selected: ', '');
+          alert(`Great! You've selected "${service}" for ${date}.\n\nPlease text Amanda at 443-857-7281 to confirm your appointment.`);
+        }
+      });
+    }
+    
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', setupServiceCard);
+</script>
     <style>
       body{
         background-image: url(img.jpg);
@@ -29,9 +60,10 @@
         <h1>Schedule a free pet meet to see if Amanda's services are a good fit for you and your furry friend!</h1>
       </div>
         
-        <!-- Calendar going here -->
-
-  <div class="calendar-container">
+        <!-- Three Card Layout -->
+<div class="cards-container">
+  <!-- Calendar Card -->
+  <div class="card calendar-card">
     <div class="calendar-header">
       <button id="prevMonth">❮</button>
       <h2 id="monthYear"></h2>
@@ -48,6 +80,42 @@
     </div>
     <div id="calendarDates" class="calendar-dates"></div>
   </div>
+
+  <!-- Availability Card -->
+  <div class="card availability-card">
+    <h3>🗓️ Saturday Availability</h3>
+    <p>Available time slots for today:</p>
+    <div class="time-slots">
+      <div class="time-slot available">9:00 AM</div>
+      <div class="time-slot unavailable">11:00 AM</div>
+      <div class="time-slot available">1:00 PM</div>
+      <div class="time-slot available">3:00 PM</div>
+      <div class="time-slot unavailable">5:00 PM</div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="dot available"></span>Available</span>
+      <span class="legend-item"><span class="dot unavailable"></span>Booked</span>
+    </div>
+  </div>
+
+  <!-- Service Card -->
+  <div class="card service-card">
+    <h3>📋 Request Service</h3>
+    <p>Click a date on the calendar to get started!</p>
+    <div id="serviceContent" class="service-content" style="display: none;">
+      <h4 id="selectedDate"></h4>
+      <p>Choose your service:</p>
+      <button class="service-btn" data-service="Dog Walking">🐕 Dog Walking</button>
+      <button class="service-btn" data-service="Pet Sitting">🏠 Pet Sitting</button>
+      <button class="service-btn" data-service="Pet Check-in">✅ Pet Check-in</button>
+      <div class="contact-info">
+        <p><strong>📞 Contact Amanda:</strong> 443-857-7281</p>
+        <p>Text to confirm your appointment!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
     </main>
     <script src="scriptCalendar.js"></script>
   </body>
