@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  padding: 0 340px 160px 0; /* Right padding for callout, bottom padding for callout */
+  padding: 0;
   position: relative;
   min-height: 100vh;
 }
@@ -291,11 +291,7 @@ ul.topnav li a:hover {
 /* Mobile Responsive - Main content */
 @media (max-width: 768px) {
   body {
-    padding: 0 10px 20px 10px; /* Override desktop padding for mobile */
-  }
-  
-  main, footer {
-    margin-right: 0; /* Remove desktop margin on mobile */
+    padding: 0 10px 20px 10px;
   }
   
   .calendly-container {
@@ -530,14 +526,15 @@ section > * + * {
 body {font-family: Arial, Helvetica, sans-serif;}
 
 .callout {
-  position: fixed;
-  bottom: 20px;
+  position: absolute;
   right: 20px;
   max-width: 300px;
   z-index: 1000;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   border-radius: 8px;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  transform-origin: bottom right;
 }
 
 .callout-header {
@@ -568,28 +565,22 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Responsive callout positioning */
 @media (max-width: 1024px) {
-  body {
-    padding-right: 20px; /* Remove right padding on smaller screens */
-  }
-  
   .callout {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    max-width: 100%;
-    margin: 20px;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+    max-width: 100% !important;
+    margin: 20px auto !important;
+    transform: scale(1) !important;
     order: 1; /* Move to top on mobile */
   }
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-bottom: 20px; /* Reduce bottom padding on mobile */
-  }
-  
   .callout {
-    margin: 10px;
-    max-width: calc(100% - 20px);
+    margin: 10px auto !important;
+    max-width: calc(100% - 20px) !important;
   }
   
   .callout-header {
@@ -599,12 +590,5 @@ body {font-family: Arial, Helvetica, sans-serif;}
   
   .callout-container {
     padding: 10px;
-  }
-}
-
-@media (min-width: 1025px) {
-  /* Ensure main content has proper margin on desktop to avoid callout overlap */
-  main, footer {
-    margin-right: 340px;
   }
 }

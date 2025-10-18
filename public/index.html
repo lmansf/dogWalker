@@ -26,6 +26,74 @@
     document.readyState === 'loading' ? 
       document.addEventListener('DOMContentLoaded', initializePage) : 
       initializePage();
+
+    // Dynamic callout positioning and sizing
+    const setupCallout = () => {
+      const callout = document.querySelector('.callout');
+      const calendlyContainer = document.querySelector('.calendly-container');
+      
+      if (!callout || !calendlyContainer) return;
+      
+      let isSticky = false;
+      let originalTop = 0;
+      
+      const updateCallout = () => {
+        // Get calendar position
+        const calendlyRect = calendlyContainer.getBoundingClientRect();
+        const scrollY = window.scrollY;
+        
+        // Calculate initial position (same height as calendar)
+        if (originalTop === 0) {
+          originalTop = calendlyRect.top + scrollY;
+        }
+        
+        // Determine if callout should stick to bottom
+        const shouldStick = scrollY > originalTop - window.innerHeight + 200;
+        
+        if (shouldStick && !isSticky) {
+          // Switch to sticky mode
+          callout.style.position = 'fixed';
+          callout.style.bottom = '20px';
+          callout.style.right = '20px';
+          callout.style.top = 'auto';
+          callout.style.maxWidth = '280px';
+          callout.style.transform = 'scale(0.9)';
+          isSticky = true;
+        } else if (!shouldStick && isSticky) {
+          // Switch back to absolute positioning
+          callout.style.position = 'absolute';
+          callout.style.top = originalTop + 'px';
+          callout.style.bottom = 'auto';
+          callout.style.right = '20px';
+          callout.style.maxWidth = '300px';
+          callout.style.transform = 'scale(1)';
+          isSticky = false;
+        } else if (!shouldStick) {
+          // Initial positioning at calendar height
+          callout.style.position = 'absolute';
+          callout.style.top = originalTop + 'px';
+          callout.style.right = '20px';
+          callout.style.bottom = 'auto';
+          callout.style.maxWidth = '300px';
+          callout.style.transform = 'scale(1)';
+        }
+      };
+      
+      // Initial setup
+      setTimeout(updateCallout, 100);
+      
+      // Update on scroll and resize
+      window.addEventListener('scroll', updateCallout);
+      window.addEventListener('resize', () => {
+        originalTop = 0; // Recalculate on resize
+        updateCallout();
+      });
+    };
+    
+    // Initialize callout after DOM is ready
+    document.readyState === 'loading' ? 
+      document.addEventListener('DOMContentLoaded', setupCallout) : 
+      setupCallout();
 </script>
 
 </head>
@@ -33,10 +101,10 @@
 <body>
   <!-- Callout positioned for optimal visibility -->
   <div class="callout">
-    <div class="callout-header">Special Offer!</div>
+    <div class="callout-header">First Visit?</div>
     <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
     <div class="callout-container">
-      <p>Book your first pet meet & greet for FREE! <a href="https://calendly.com/lmansf96/30min?primary_color=63dd61" target="_blank">Schedule now</a> and see if Amanda's services are right for you.</p>
+      <p>Book an introduction! <a href="https://calendly.com/lmansf96/30min?primary_color=63dd61" target="_blank">Schedule now</a> and see if Amanda's services are right for you.</p>
     </div>
   </div>
 
