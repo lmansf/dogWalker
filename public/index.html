@@ -27,80 +27,20 @@
       document.addEventListener('DOMContentLoaded', initializePage) : 
       initializePage();
 
-    // Accordion callout positioning - top anchored to calendar, bottom to screen
-    const setupCallout = () => {
-      const callout = document.querySelector('.callout');
-      const calendlyContainer = document.querySelector('.calendly-container');
-      
-      if (!callout || !calendlyContainer) return;
-      
-      const updateCallout = () => {
-        // Use requestAnimationFrame for smooth, immediate updates
-        requestAnimationFrame(() => {
-          // Get calendar and window dimensions
-          const calendlyRect = calendlyContainer.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          
-          // Always use fixed positioning for accordion effect
-          callout.style.position = 'fixed';
-          callout.style.right = '20px';
-          callout.style.width = '300px';
-          
-          // Top anchor: align with calendar top (but keep in viewport)
-          const topPosition = Math.max(calendlyRect.top, 20);
-          callout.style.top = topPosition + 'px';
-          
-          // Bottom anchor: align with bottom of screen
-          const bottomMargin = 20;
-          const availableHeight = windowHeight - topPosition - bottomMargin;
-          
-          // Set height to fill from calendar top to screen bottom
-          if (availableHeight > 100) { // Minimum height check
-            callout.style.height = availableHeight + 'px';
-            callout.style.bottom = 'auto';
-          } else {
-            // If too small, position at bottom with auto height
-            callout.style.height = 'auto';
-            callout.style.bottom = bottomMargin + 'px';
-            callout.style.top = 'auto';
-          }
-        });
-      };
-      
-      // Initial setup - no delay for immediate response
-      updateCallout();
-      
-      // Update on scroll and resize for real-time accordion effect
-      window.addEventListener('scroll', updateCallout, { passive: true });
-      window.addEventListener('resize', updateCallout, { passive: true });
-    };
-    
-    // Initialize callout after DOM is ready
-    document.readyState === 'loading' ? 
-      document.addEventListener('DOMContentLoaded', setupCallout) : 
-      setupCallout();
+
 </script>
 
 </head>
 
 <body>
-  <!-- Callout positioned for optimal visibility -->
-  <div class="callout">
-    <div class="callout-header">First Visit?</div>
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">×</span>
-    <div class="callout-container">
-      <p>Book an introduction! <a href="https://calendly.com/lmansf96/30min?primary_color=63dd61" target="_blank">Schedule now</a> and see if Amanda's services are right for you.</p>
-    </div>
-  </div>
-
   <header>
     <h1 style="text-align:center;">Amanda's Pet Sitting & Dog Walking Services</h1>
-</header>
-<ul class="topnav">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="Contact.html">Contact</a></li>
-  <li><a href="Offerings.html">Offerings</a></li>
-</ul>
+  </header>
+  <ul class="topnav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="Contact.html">Contact</a></li>
+    <li><a href="Offerings.html">Offerings</a></li>
+  </ul>
     <main>
       <div>
         <h2 style="text-align:center;">Bookings are Available!</h2>
