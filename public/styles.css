@@ -25,7 +25,7 @@ body::before {
 }
 
 header {
-  background-color: #f5f0ea;
+  background-color: #f8f9fa;
   padding: 10px;
   text-align: center;
   position: relative;
@@ -96,7 +96,7 @@ ul.topnav li a:hover {
 .calendar-card {
   width: 320px;
   flex: 0 0 320px;
-  background: #faf8f5 !important;
+  background: #f8f9fa !important;
 }
 
 .availability-card {
@@ -140,7 +140,7 @@ ul.topnav li a:hover {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  background-color: #f0ebe5;
+  background-color: #e9ecef;
   font-weight: bold;
   padding: 8px 0;
   margin: 0 -20px 10px -20px;
@@ -172,7 +172,7 @@ ul.topnav li a:hover {
 }
 
 .date.inactive {
-  color: #c4b5a0;
+  color: #adb5bd;
   cursor: default;
 }
 
@@ -217,15 +217,15 @@ ul.topnav li a:hover {
 }
 
 .time-slot.unavailable {
-  background: #f0ebe5;
-  color: #8b7355;
+  background: #e9ecef;
+  color: #6c757d;
   cursor: not-allowed;
 }
 
 /* Legend */
 .legend {
   text-align: center;
-  background: #faf8f5;
+  background: #f8f9fa;
   padding: 10px;
   border-radius: 8px;
 }
@@ -249,7 +249,7 @@ ul.topnav li a:hover {
 }
 
 .dot.unavailable {
-  background: #f0ebe5;
+  background: #e9ecef;
 }
 
 /* Service Buttons */
@@ -282,7 +282,7 @@ ul.topnav li a:hover {
 .contact-info {
   margin-top: 15px;
   padding: 15px;
-  background: #faf8f5;
+  background: #f8f9fa;
   border-radius: 8px;
   text-align: center;
   font-size: 0.9rem;
@@ -393,8 +393,8 @@ ul.topnav li a:hover {
 /* Other page demo styles */
 .marquee__content > * {
   flex: 0 0 auto;
-  color: #A8D8A8;
-  opacity: 0.95;
+  color: white;
+  opacity: 0.9;
   margin: 2px;
   padding: 1rem 2rem;
   border-radius: 0.25rem;
@@ -423,7 +423,7 @@ h1 {
   font-weight: 600;
   line-height: 1.2;
   margin-block: 2rem 1rem;
-  color: #90C695;
+  color: black;
   position: relative;
   z-index: 5;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -432,7 +432,7 @@ h1 {
 h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #5A7C5A;
+  color: black;
 }
 
 section {
@@ -482,7 +482,7 @@ section > * + * {
 
 /* Style the back side */
 .flip-card-back {
-  color: #A8D8A8;
+  color: white;
   transform: rotateY(180deg);
 }
 
