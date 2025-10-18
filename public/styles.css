@@ -423,7 +423,7 @@ h1 {
   font-weight: 600;
   line-height: 1.2;
   margin-block: 2rem 1rem;
-  color: #7BA05B;
+  color: #90C695;
   position: relative;
   z-index: 5;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -432,7 +432,7 @@ h1 {
 h2 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #7BA05B;
+  color: #5A7C5A;
 }
 
 section {
