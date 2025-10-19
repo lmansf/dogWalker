@@ -1,75 +1,96 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Amanda's Pet Services</title>
-    <link rel="preload" href="img.jpg" as="image">
-    <link rel="stylesheet" href="styles.css">
-    <script src="marq.js" defer></script>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    <script defer> 
-    // Simplified functionality for Calendly integration
-    const initializePage = () => {
-      // Calendly handles scheduling, no custom calendar logic needed
-      console.log('Calendly integration loaded');
-      
-      // Optional: Add any custom tracking or analytics here
-      window.addEventListener('message', function(e) {
-        if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-          console.log('Calendly event:', e.data.event);
-        }
-      });
-    };
-    
-    // Initialize when DOM is ready
-    document.readyState === 'loading' ? 
-      document.addEventListener('DOMContentLoaded', initializePage) : 
-      initializePage();
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Amanda's Pet Services</title>
+  <link rel="preload" href="img.jpg" as="image">
+  <link rel="stylesheet" href="styles.css">
+  <script src="marq.js" defer></script>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script defer>
+  // Simplified functionality for Calendly integration
+  const initializePage = () => {
+    console.log('Calendly integration loaded');
+    window.addEventListener('message', function(e) {
+      if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+        console.log('Calendly event:', e.data.event);
+      }
+    });
+  };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', initializePage) : initializePage();
+  </script>
 
-
-</script>
-
+  <!-- Grid layout styles applied only to this page -->
+  <style>
+  /* Grid layout from user's template, scoped to classes used below */
+  .grid-container * { box-sizing: border-box; }
+  .grid-container .header { grid-area: header; background-color: #f1f1f1; padding: 30px; text-align: center; font-size: 35px; }
+  .grid-container { display: grid; grid-template-areas: 'header header header header header header' 'left middle middle middle middle right' 'footer footer footer footer footer footer'; }
+  .grid-container .left, .grid-container .middle, .grid-container .right { padding: 10px; }
+  .grid-container .left { grid-area: left; }
+  .grid-container .middle { grid-area: middle; }
+  .grid-container .right { grid-area: right; }
+  .grid-container .footer { grid-area: footer; background-color: #f1f1f1; padding: 10px; text-align: center; }
+  @media (max-width: 600px) {
+    .grid-container { grid-template-areas: 'header header header header header header' 'left left left left left left' 'middle middle middle middle middle middle' 'right right right right right right' 'footer footer footer footer footer footer'; }
+  }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1 style="text-align:center;">Amanda's Pet Sitting & Dog Walking Services</h1>
-  </header>
-  <ul class="topnav">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="Offerings.html">Offerings</a></li>
-  </ul>
-    <main>
-      <div>
-        <h2 style="text-align:center;">Bookings are Available!</h2>
-      </div>
-        
-        <!-- Calendly Booking Widget -->
-<div class="calendly-container">
-  <div class="calendly-inline-widget" 
-       data-url="https://calendly.com/lmansf96/30min?primary_color=63dd61" 
-       style="min-width:100%;height:700px;border-radius:15px;overflow:hidden;max-width:1200px;margin:0 auto;">
-  </div>
-</div>
-    </main>
-  </body>
-<footer>
- <section class="enable-animation">
 
-  <div class="marquee marquee--fit-content">
-    <ul class="marquee__content">
-      <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
-      <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
-      <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
-    </ul>
-    <ul aria-hidden="true" class="marquee__content">
-      <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
-      <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
-      <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
+  <div class="header">
+    <h1 style="text-align:center;">Amanda's Pet Sitting & Dog Walking Services</h1>
+  </div>
+
+  <div class="topnav-container">
+    <ul class="topnav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Offerings.html">Offerings</a></li>
     </ul>
   </div>
-</section> 
-  
-</footer>
+
+  <div class="grid-container">
+    <div class="left"></div>
+    <div class="middle">
+      <main>
+        <div>
+          <h2 style="text-align:center;">Bookings are Available!</h2>
+        </div>
+
+        <!-- Calendly Booking Widget -->
+        <div class="calendly-container">
+          <div class="calendly-inline-widget"
+               data-url="https://calendly.com/lmansf96/30min?primary_color=63dd61"
+               style="min-width:100%;height:700px;border-radius:15px;overflow:hidden;max-width:1200px;margin:0 auto;">
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="right">
+      <!-- Right column is intentionally left for optional content (sidebar) -->
+    </div>
+
+    <div class="footer">
+      <section class="enable-animation">
+        <div class="marquee marquee--fit-content">
+          <ul class="marquee__content">
+            <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
+            <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
+            <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
+          </ul>
+          <ul aria-hidden="true" class="marquee__content">
+            <li><span style="color: yellow">Gina says:</span> "My <span style="color: purple"><strong>dog</strong></span> absolutely loves her. She comes every week and it makes me feel better when I'm traveling to know my baby <span style="color: purple"><strong>peejay</strong></span> is in safe hands with a professional."</li>
+            <li><span style="color: yellow">Jessica says:</span> "I won't leave my babies with anyone else! My little <span style="color: purple"><strong>cats</strong></span> need the attention of a pro."</li>
+            <li><span style="color: yellow"><strong>Logan</strong> says:</span> "<span style="color: purple"><strong>Toffee</strong></span> is an angel, but having my mom, uh, a professional, makes me feel like our cat will do no harm while we're out of town."</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+</body>
 </html>

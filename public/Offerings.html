@@ -5,50 +5,88 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="styles.css" />
     <title>Services</title>
+    <style>
+    /* Scoped flexbox layout per user template */
+    .header { background-color: #f1f1f1; padding: 30px; text-align: center; font-size: 35px; }
+    .row { display:flex; gap: 12px; }
+    .column { flex: 1; padding: 10px; }
+    .footer { background-color: #f1f1f1; padding: 10px; text-align: center; }
+    @media (max-width: 600px) { .row { flex-direction: column; } }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Services</h1>
-    </header>
+  <div class="header">
+    <h1>Services</h1>
+  </div>
+
+  <!-- Top container between header and columns -->
+  <div class="topnav-container">
     <ul class="topnav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Offerings.html">Offerings</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="Offerings.html">Services</a></li>
     </ul>
-    <main>
-      <h2> Retired dog mom ready to play</h2>
+  </div>
+</br>
+  <div class="top-container" style="padding:16px;   background: #FFFFFFBF; text-align:center;">
+    <h3>First time visitor? check out my offerings below</h3>
+  </div>
+</br>
+  <!-- Three-column flex layout: left / middle / right -->
+  <div class="row">
+    <div class="column" style="background-color:#FFFFFFBF">
+      <div id="offerings">
+        <h3> Services</h3>
+        <ul>
+          <li>House Sitting     $50 <em>(per night)</em></li>
+          <li>Dog Walking         $15  <em>(per walk)</em></li>
+          <li>Drop-In Visits    $20 <em>(per visit)</em></li>
+        </ul>
+      </div>
+    </div>
 
-<div id="offerings">
-      <h3> Services</h3>
+    <div class="column" style="background-color:#FFFFFFBF">
+      <main>
+        <h2> Retired dog mom ready to play</h2>
 
-<ul>
-  <li>House Sitting     $50 <em>(per night)</em></li>
-  <li>Dog Walking         $15  <em>(per walk)</em></li>
-  <li>Drop-In Visits    $20 <em>(per visit)</em></li>
-  </li>
-</ul>
-</div>
+        <div id="pet-experience">
+          <h3>Pet care experience</h3>
+          <p>I have fostered dogs in my home for a rescue for the past 10 years. Fostering requires me to get them ready to be adopted — housebreaking, manners, and caring for older pets. I have fostered many breeds and also have experience with a blind dog. I have also enjoyed being a pet sitter for cats.</p>
 
+          <h3>Cat care experience</h3>
+          <p>Amanda also cares for cats. Learn about their cat-specific care experience.</p>
+        </div>
+      </main>
+    </div>
 
-<div id="pet-experience">
-      <h3>Pet care experience</h3>
-      <p>I have fostered dogs, in my home for a rescue for the past 10 years. 
-        Fostering requires me to get them ready to be adopted. Housebreaking, working on manners, and caring for older pets. 
-        I have fostered almost every breed and even have experience with a blind dog. 
-        I have also enjoyed being a pet sitter for cats as well.</p>
+    <div class="column" style="background-color:#FFFFFFBF">
+      <div id="availability">
+        <h3> Availability</h3>
+        <p style="text-align: center;">I am 100% retired and can’t wait to spend my time with your adorable pet. I’ve always wanted to work with animals and I feel I have a special relationship with them.</p>
+      </div>
+    </div>
+  </div>
 
-      <h3> Cat care experience</h3>
-      <p>Amanda also cares for cats. Learn about their cat-specific care experience.</p>
-</div>
+  <div class="footer">
+    <div class="row">
+      <div class="column">
+          <h4>Rover</h4>
+          <a href="https://www.rover.com/members/amanda-m-retired-dog-mom-ready-to-play/">Rover Profile </a>
+        </div>
 
-<div id="availability">
-      <h3> Availability</h3>
-      <p>I am 100% retired and can’t wait to spend my time with your adorable pet. 
-        I’ve always wanted to work with animals and I feel I have a special relationship with them.</p>
+      <div class="column">
+        <h4>Contact</h4>
+        <p>text or email me:</p>
+          <p>phone: (443)443-857-7281</p>
+          <p>email: amansfld@gmail.com</p>
+        </div>
 
+        <div class="column" style="background-color:#ffffff00;">
+        <h4>Feedback</h4>
+        <p>Leave a review! Go to my link <a href="#">here</a> and tell me how it went!</p>
+        </div>
+      </div>
+    </div>
 
-</div>
-
-    </main>
 </body>
 </html>
