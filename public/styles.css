@@ -47,7 +47,7 @@ body {
 
 header {
   background-color: #f8f9fa;
-  padding: 10px;
+  padding: 6px 10px; /* reduce overall header padding */
   text-align: center;
   position: relative;
   z-index: 10;
@@ -61,7 +61,7 @@ header {
 /* Import fonts via Google Fonts at top of file (added below) */
 
 h1 {
-  margin: 0;
+  margin: 0 0 6px 0; /* small bottom gap before h2 */
   /* 75pt is large for screen; respecting user spec. */
   font-size: 75pt;
   font-family: 'Source Serif Pro', Georgia, serif;
@@ -81,6 +81,7 @@ h2 {
   letter-spacing: 0.10em;
   position: relative;
   z-index: 5;
+  margin-top: 0; /* remove extra gap above h2 */
 }
 
 h3 {
@@ -125,6 +126,7 @@ ul.topnav li a {
   top: 0; /* sticks to top of viewport when scrolling */
   z-index: 60; /* sits above most content */
   background: transparent; /* ul.topnav provides background color */
+  margin-top: -6px; /* pull the nav up so it's visually attached to the header */
 }
 
 /* Center nav items across the container */
@@ -163,6 +165,20 @@ ul.topnav li a:hover {
 .left, .middle, .right, .column {
   border-radius: 12px;
   overflow: hidden; /* prevent inner content from overflowing rounded corners */
+}
+
+/* Make the middle column and Calendly panel visually transparent so the embed shows as a clean calendar with no extra box */
+.middle, .calendly-container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important; /* remove rounded corners around the calendar container */
+}
+
+/* Ensure the inline Calendly widget itself doesn't have extra background from inline styles */
+.calendly-inline-widget {
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
 /* Center headings globally */
