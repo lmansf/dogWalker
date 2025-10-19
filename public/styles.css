@@ -273,10 +273,19 @@ h1, h2, h3 {
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   }
   .grid-container .middle {
-    background: transparent;
+    /* default: white rounded like the side panels */
+    background: rgba(255,255,255,0.95);
+    color: #111;
     border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: 18px;
+  }
+  /* On the homepage (body.home) we keep the middle column transparent for the Calendly widget */
+  body.home .grid-container .middle {
+    background: transparent;
     box-shadow: none;
-    padding: 8px;
+    border-radius: 0;
+    padding: 0;
   }
 }
 
