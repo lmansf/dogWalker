@@ -20,6 +20,7 @@
   };
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', initializePage) : initializePage();
   </script>
+  <script src="index.js" type="text/javascript" defer></script>
 
   <!-- Grid layout styles applied only to this page -->
   <style>
@@ -45,12 +46,9 @@
     <h2 style="text-align:center;">Professional Pet Sitting & Dog Walking Services</h2>
   </div>
 
-  <div class="topnav-container">
-    <ul class="topnav">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="Offerings.html">Offerings</a></li>
-    </ul>
-  </div>
+<template id="topnav-template">
+  #document-fragment
+</template>
 
   <div class="grid-container">
     <div class="left"></div>
@@ -66,6 +64,10 @@
                data-url="https://calendly.com/lmansf96/30min?primary_color=63dd61"
                style="min-width:100%;height:700px;border-radius:15px;overflow:hidden;max-width:1200px;margin:0 auto;">
           </div>
+        </div>
+        <!-- Mobile CTA: shown on small screens to open Calendly popup -->
+        <div style="text-align:center;margin-top:12px;">
+          <a id="mobile-book-button" class="mobile-book-btn" href="#" aria-label="Book an appointment">Book an appointment</a>
         </div>
       </main>
     </div>
@@ -94,4 +96,37 @@
   </div>
 
 </body>
+<script>
+// Mobile booking: hide inline widget on small screens and open Calendly popup
+function setupMobileBooking() {
+  const btn = document.getElementById('mobile-book-button');
+  const widgetContainer = document.querySelector('.calendly-container');
+  function toggle() {
+    if (!btn || !widgetContainer) return;
+    if (window.innerWidth <= 768) {
+      widgetContainer.style.display = 'none';
+      btn.style.display = 'inline-block';
+    } else {
+      widgetContainer.style.display = '';
+      btn.style.display = 'none';
+    }
+  }
+
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    if (window.Calendly && typeof Calendly.initPopupWidget === 'function') {
+      Calendly.initPopupWidget({ url: 'https://calendly.com/lmansf96/30min?primary_color=63dd61' });
+    } else {
+      // fallback: open in new tab
+      window.open('https://calendly.com/lmansf96/30min?primary_color=63dd61','_blank');
+    }
+  });
+
+  window.addEventListener('resize', toggle);
+  window.addEventListener('orientationchange', toggle);
+  document.addEventListener('DOMContentLoaded', function() { toggle(); setTimeout(toggle,300); });
+}
+
+setupMobileBooking();
+</script>
 </html>

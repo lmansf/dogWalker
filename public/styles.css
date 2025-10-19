@@ -260,6 +260,22 @@ h1, h2, h3 {
   .left, .middle, .right { padding: 6px; margin-bottom: 12px; }
 }
 
+/* Mobile booking CTA - hide inline widget on small screens and show CTA */
+@media (max-width: 768px) {
+  .calendly-container { display: none !important; }
+  #mobile-book-button { display: inline-block !important; }
+}
+
+#mobile-book-button, .mobile-book-btn {
+  display: none;
+  background: #3f9043;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
 /* Marquee styles */
 .marquee {
   --gap: 1rem;
