@@ -204,6 +204,401 @@ h1, h2, h3 {
   }
 }
 
+/* Additional responsive improvements to preserve desktop layout but improve mobile */
+@media (max-width: 900px) {
+  /* Stack grid columns vertically for narrow screens */
+  .grid-container {
+    display: block; /* allow natural flow stacking */
+    padding: 0 8px;
+  }
+
+  .grid-container .left,
+  .grid-container .middle,
+  .grid-container .right {
+    width: 100%;
+    margin: 0 auto 16px auto;
+    padding: 8px;
+    border-radius: 8px; /* keep subtle rounding */
+    background-clip: padding-box;
+  }
+
+  /* Make the nav wrap and reduce padding so it fits */
+  ul.topnav {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  ul.topnav li a {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  /* Tighter header spacing on small screens */
+  header {
+    padding: 8px 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    line-height: 1.05;
+  }
+  h2 {
+    font-size: 18pt;
+    margin-top: 4px;
+  }
+
+  /* Calendar sizing tweaks for smaller screens */
+  .calendly-inline-widget {
+    height: 560px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Extra small phones: reduce heading sizes and calendar height */
+  h1 { font-size: clamp(22px, 8vw, 36px); }
+  h2 { font-size: 16pt; }
+  .calendly-inline-widget { height: 500px !important; }
+  ul.topnav li a { padding: 8px 10px; font-size: 14px; }
+  .left, .middle, .right { padding: 6px; margin-bottom: 12px; }
+}
+
+/* Marquee styles */
+.marquee {
+  --gap: 1rem;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+/* Pause animation when reduced-motion is set */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__content {
+    animation-play-state: paused !important;
+  }
+}
+
+/* Enable animation */
+.enable-animation .marquee__content {
+  animation: scroll 45s linear infinite;
+}
+
+/* Attempt to size parent based on content. Keep in mind that the parent width is equal to both content containers that stretch to fill the parent. */
+.marquee--fit-content {
+  max-width: fit-content;
+}
+
+
+/* Other page demo styles */
+.marquee__content > * {
+  flex: 0 0 auto;
+  color: white;
+  opacity: 0.9;
+  margin: 2px;
+  padding: 1rem 2rem;
+  border-radius: 0.25rem;
+  text-align: center;
+}
+
+.marquee {
+  --gap: 1rem;
+}
+
+
+
+/* Removed duplicate h1/h2 rules that were overriding the explicit user-configured
+   heading styles earlier in this stylesheet. The site's h1 and h2 are defined
+   above with the requested font families, sizes and letter-spacing. */
+
+section {
+  margin-block: 3rem;
+}
+
+section > * + * {
+  margin-block-start: 0.5rem;
+}
+
+ul {
+  list-style-position: inside
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Import Google Fonts used site-wide (Source Serif Pro and Source Sans Pro) */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Source+Serif+Pro:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+  /* Use Source Serif Pro for body text as requested */
+  font-family: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  font-size: 16pt; /* user's requested body size */
+  line-height: 1.5;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background image sits on top of the base background-color so the
+     underlying color will darken the overall appearance. Use img.jpg (or img.jpeg).
+     If you prefer a different filename, update this URL. */
+  background-image: url(img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* control darkness by changing this opacity; lower value = darker base shows through */
+  opacity: 0.65;
+  z-index: -1;
+}
+
+/* Dark base behind the background image. Adjust this variable or override if you need
+   a different darkness level. */
+:root {
+  --page-bg-color: #000000;
+}
+
+body {
+  background-color: var(--page-bg-color);
+}
+
+header {
+  background-color: #f8f9fa;
+  padding: 6px 10px; /* reduce overall header padding */
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+/* Make header semi-transparent */
+.header, header {
+  background-color: rgba(248,249,250,0.85) !important;
+  backdrop-filter: blur(4px);
+}
+/* Heading / type scale overrides per user request */
+/* Import fonts via Google Fonts at top of file (added below) */
+
+h1 {
+  margin: 0 0 6px 0; /* small bottom gap before h2 */
+  /* 75pt is large for screen; respecting user spec. */
+  font-size: 75pt;
+  font-family: 'Source Serif Pro', Georgia, serif;
+  font-weight: 700; /* Bold */
+  color: #333333;
+  /* Interpret "0.50 Letter space" as 0.5px letter-spacing */
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 22pt; /* user requested */
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-weight: 600;
+  color: #333333;
+  text-transform: uppercase;
+  /* Interpret "100 letter space" as 0.10em (conservative interpretation) */
+  letter-spacing: 0.10em;
+  position: relative;
+  z-index: 5;
+  margin-top: 0; /* remove extra gap above h2 */
+}
+
+h3 {
+  font-size: 16pt; /* user requested */
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+  font-weight: 600;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  position: relative;
+  z-index: 5;
+}
+
+/* Style the topnav */
+ul.topnav {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #333333;
+  position: relative;
+  z-index: 10;
+}
+
+/* Topnav container background semi-transparent so page content shows through */
+.topnav-container {
+  background-color: rgba(51,51,51,0.9);
+}
+
+/* Style links in topnav */
+ul.topnav li a {
+  display: block;
+  color: #f1f1f1;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Full-width sticky nav container that sits with the header */
+.topnav-container {
+  width: 100%;
+  position: sticky;
+  top: 0; /* sticks to top of viewport when scrolling */
+  z-index: 60; /* sits above most content */
+  background: transparent; /* ul.topnav provides background color */
+  margin-top: -6px; /* pull the nav up so it's visually attached to the header */
+}
+
+/* Center nav items across the container */
+ul.topnav {
+  justify-content: center;
+}
+
+/* Change color on hover */
+ul.topnav li a:hover {
+  background-color: #e6d7c3;
+  color: black;
+}
+
+
+/* Calendly Container */
+.calendly-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Make main containers slightly translucent to darken the background image
+   while keeping text readable. Use !important to override inline styles if needed. */
+.top-container, .calendly-container, .footer, .column, .grid-container, .marquee {
+  background-color: rgba(255,255,255,0.06); /* subtle overlay */
+}
+
+/* A slightly stronger overlay for sidebars and panels */
+.column, .right, .left {
+  background-color: rgba(0,0,0,0.04);
+}
+
+/* Rounded corners for column containers so the grid panels have a softer look */
+.left, .middle, .right, .column {
+  border-radius: 12px;
+  overflow: hidden; /* prevent inner content from overflowing rounded corners */
+}
+
+/* Make the middle column and Calendly panel visually transparent so the embed shows as a clean calendar with no extra box */
+.middle, .calendly-container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important; /* remove rounded corners around the calendar container */
+}
+
+/* Ensure the inline Calendly widget itself doesn't have extra background from inline styles */
+.calendly-inline-widget {
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Center headings globally */
+h1, h2, h3 {
+  text-align: center !important;
+}
+
+
+
+/* Mobile Responsive - Main content */
+@media (max-width: 768px) {
+  body {
+    padding: 0 10px 20px 10px;
+  }
+  
+  .calendly-container {
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+  .calendly-inline-widget {
+    height: 600px !important;
+  }
+}
+
+/* Additional responsive improvements to preserve desktop layout but improve mobile */
+@media (max-width: 900px) {
+  /* Stack grid columns vertically for narrow screens */
+  .grid-container {
+    display: block; /* allow natural flow stacking */
+    padding: 0 8px;
+  }
+
+  .grid-container .left,
+  .grid-container .middle,
+  .grid-container .right {
+    width: 100%;
+    margin: 0 auto 16px auto;
+    padding: 8px;
+    border-radius: 8px; /* keep subtle rounding */
+    background-clip: padding-box;
+  }
+
+  /* Make the nav wrap and reduce padding so it fits */
+  ul.topnav {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  ul.topnav li a {
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  /* Tighter header spacing on small screens */
+  header {
+    padding: 8px 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 48px);
+    line-height: 1.05;
+  }
+  h2 {
+    font-size: 18pt;
+    margin-top: 4px;
+  }
+
+  /* Calendar sizing tweaks for smaller screens */
+  .calendly-inline-widget {
+    height: 560px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Extra small phones: reduce heading sizes and calendar height */
+  h1 { font-size: clamp(22px, 8vw, 36px); }
+  h2 { font-size: 16pt; }
+  .calendly-inline-widget { height: 500px !important; }
+  ul.topnav li a { padding: 8px 10px; font-size: 14px; }
+  .left, .middle, .right { padding: 6px; margin-bottom: 12px; }
+}
+
 /* Marquee styles */
 .marquee {
   --gap: 1rem;
