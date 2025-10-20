@@ -150,6 +150,25 @@ ul.topnav li a:hover {
   z-index: 2;
 }
 
+/* Make the Calendly container center its content and avoid horizontal overflow
+   on narrow viewports. The inline widget (Calendly iframe) can have internal
+   styles; force its width to 100% and allow the site to control the max-width. */
+.calendly-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.calendly-inline-widget {
+  width: 100% !important;
+  min-width: 0 !important; /* important to override inline min-width if present */
+  max-width: 1200px !important;
+  box-sizing: border-box !important;
+  margin: 0 auto !important;
+  display: block !important;
+}
+
 /* Make main containers slightly translucent to darken the background image
    while keeping text readable. Use !important to override inline styles if needed. */
 .top-container, .calendly-container, .footer, .column, .grid-container, .marquee {
@@ -203,6 +222,17 @@ h1, h2, h3 {
     height: 600px !important;
   }
 }
+
+/* Ensure the calendar fits vertically on small viewports and doesn't overflow right */
+@media (max-width: 420px) {
+  .calendly-inline-widget {
+    height: 70vh !important; /* use viewport-relative height */
+    max-height: 80vh !important;
+  }
+}
+
+/* Prevent horizontal overflow on the homepage where the Calendly widget is embedded */
+body.home { overflow-x: hidden; }
 
 /* Additional responsive improvements to preserve desktop layout but improve mobile */
 @media (max-width: 900px) {
