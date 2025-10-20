@@ -404,6 +404,44 @@ body.home { overflow-x: hidden; }
   --gap: 1rem;
 }
 
+/* Calendly popup & iframe responsiveness and centering
+   Some Calendly embeds inject iframes with large min-widths or transforms.
+   These rules force any Calendly iframe (inline or popup) to fit the viewport
+   and be horizontally centered. They are intentionally broad to override
+   styles the external widget may inject. */
+.calendly-inline-widget iframe,
+.calendly-inline-widget * ,
+iframe[src*="calendly.com"],
+div[class*="calendly"] iframe,
+.calendly-overlay,
+.calendly-popup,
+.calendly-iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure popup overlay centers its child and doesn't allow horizontal scroll */
+.calendly-overlay, .calendly-popup {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+}
+
+@media (max-width: 480px) {
+  /* For very small screens, limit popup height so it fits and centers well */
+  .calendly-overlay iframe, .calendly-popup iframe, iframe[src*="calendly.com"] {
+    height: 80vh !important;
+    max-height: 90vh !important;
+  }
+}
+
 
 
 /* Removed duplicate h1/h2 rules that were overriding the explicit user-configured
