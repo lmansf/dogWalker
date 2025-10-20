@@ -460,7 +460,7 @@ div[class*="calendly"] iframe,
   position: relative !important;
   margin: 0 auto !important;
   transform: none !important;
-  z-index: 1000000 !important;
+  z-index: 2147483646 !important; /* very high, but leave room for browser/system overlays */
   box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
   border-radius: 12px !important;
 }
@@ -472,7 +472,7 @@ div[class*="calendly"] iframe,
     left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
-    z-index: 1000001 !important; /* just above page content */
+    z-index: 1000 !important; /* keep below the Calendly iframe */
     display: inline-block !important;
     padding: 1rem 1.25rem !important;
     font-size: 1rem !important;
