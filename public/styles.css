@@ -442,6 +442,47 @@ div[class*="calendly"] iframe,
   }
 }
 
+/* Ensure Calendly overlay/popup appears above all interactive content (marquee, header)
+   and covers the viewport so underlying elements don't intercept pointer events. */
+.calendly-overlay, .calendly-popup {
+  position: fixed !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 999999 !important;
+  background: rgba(0,0,0,0.45) !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure the iframe is centered within the overlay and visible above the dim */
+.calendly-overlay iframe, .calendly-popup iframe, iframe[src*="calendly.com"] {
+  position: relative !important;
+  margin: 0 auto !important;
+  transform: none !important;
+  z-index: 1000000 !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4) !important;
+  border-radius: 12px !important;
+}
+
+/* Center the mobile booking CTA in the viewport on small screens so users can tap it easily */
+@media (max-width: 768px) {
+  #mobile-book-button, .mobile-book-btn {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 1000001 !important; /* just above page content */
+    display: inline-block !important;
+    padding: 1rem 1.25rem !important;
+    font-size: 1rem !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25) !important;
+    background: #3f9043 !important;
+    color: #fff !important;
+  }
+}
+
 
 
 /* Removed duplicate h1/h2 rules that were overriding the explicit user-configured
