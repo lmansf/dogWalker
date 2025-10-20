@@ -483,6 +483,62 @@ div[class*="calendly"] iframe,
   }
 }
 
+/* Unified, mobile-first styling for the Calendly close button and mobile CTA
+   - Touch-friendly sizes and spacing
+   - High contrast, subtle elevation, smooth transitions
+   - Keeps a consistent look across site pages */
+.calendly-close-btn,
+#mobile-book-button,
+.mobile-book-btn {
+  -webkit-tap-highlight-color: rgba(0,0,0,0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  will-change: transform;
+}
+
+/* Primary visual for CTA and close — pill on mobile */
+#mobile-book-button, .mobile-book-btn {
+  border: 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.calendly-close-btn {
+  /* Desktop and mobile positioning handled by JS insertion; keep visuals here */
+  background: rgba(34,34,34,0.95) !important;
+  color: #fff !important;
+  padding: 0.66rem 0.9rem !important;
+  border-radius: 999px !important; /* pill */
+  font-size: 15px !important;
+  line-height: 1 !important;
+  opacity: 0.98 !important;
+}
+
+.calendly-close-btn:hover,
+#mobile-book-button:hover,
+.mobile-book-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.22) !important;
+}
+
+.calendly-close-btn:focus,
+#mobile-book-button:focus,
+.mobile-book-btn:focus {
+  outline: 3px solid rgba(99,179,99,0.22) !important;
+  outline-offset: 2px !important;
+}
+
+/* Slightly larger tap-target on very small screens */
+@media (max-width: 420px) {
+  .calendly-close-btn {
+    padding: 0.85rem 1rem !important;
+    font-size: 16px !important;
+  }
+  #mobile-book-button, .mobile-book-btn {
+    padding: 1rem 1.25rem !important;
+    font-size: 1.05rem !important;
+  }
+}
+
 
 
 /* Removed duplicate h1/h2 rules that were overriding the explicit user-configured
